@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GENETHON</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header styles */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #333;
+      color: white;
+      padding: 20px 10px;
+      flex-direction: column;
+    }
+
+    .logo {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Sidebar for mobile */
+    .sidebar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #333;
+      padding-top: 20px;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      text-align: center;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    .menu-toggle {
+      display: block;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: white;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Banner styles */
+    .banner {
+      position: relative;
+      height: 90vh;
+      background: url('lambo.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .banner-content {
+      text-align: center;
+    }
+
+    .banner-content h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .buttons a {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      text-decoration: none;
+      background-color: #007bff;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #0056b3;
+    }
+
+    /* Features section styles */
+    .features {
+      padding: 40px 20px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .features-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .feature {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .feature img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      font-size: 1em;
+      color: #ff5900;
+    }
+
+    /* Contact section styles */
+    .contact {
+      background-color: #333;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      font-size: 1.2em;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .features-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <header class="header">
+    <div class="menu-toggle">&#9776;</div>
+    <div class="logo">X9LOADS</div>
+  </header>
+
+  <div class="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Profile</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Welcome to X9LOADS</h1>
+      <div class="buttons">
+        <a href="#">Post Load</a>
+        <a href="#">Find Vehicles</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <h2>Our Features</h2>
+    <div class="features-container">
+      <div class="feature">
+        <img src="lamborg.jpg" alt="Live Tracking">
+        <h3>Live Tracking</h3>
+        <p>Track your shipments in real-time with our advanced tracking system.</p>
+      </div>
+      <div class="feature">
+        <img src="gwag.png" alt="Expected Expenses Calculation">
+        <h3>Expected Expenses Calculation</h3>
+        <p>Estimate the cost of your shipments with our easy-to-use calculator.</p>
+      </div>
+      <div class="feature">
+        <img src="urus.jpg" alt="Hassle-Free Connection">
+        <h3>Hassle-Free Connection</h3>
+        <p>Connect with reliable vehicles and carriers effortlessly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p><strong>Email:</strong> 8888@x9loads.com</p>
+      <p><strong>Phone:</strong> +91 8888888888</p>
+      <p><strong>Address:</strong> Lorem ipsum dolor sit amet.</p>
+    </div>
+  </section>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+
+    menuToggle.addEventListener('click', () => {
+      const isSidebarVisible = sidebar.style.display === 'flex';
+      sidebar.style.display = isSidebarVisible ? 'none' : 'flex';
+      overlay.style.display = isSidebarVisible ? 'none' : 'block';
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.style.display = 'none';
+      overlay.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>
