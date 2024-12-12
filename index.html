@@ -3,13 +3,14 @@
 
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBXCP1VT35"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XBXCP1VT35');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBXCP1VT35"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XBXCP1VT35');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GENETHON</title>
@@ -93,42 +94,46 @@
       align-items: center;
       color: white;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-      padding: 20px;
-      box-sizing: border-box;
     }
 
     .banner-content {
       text-align: center;
-      width: 100%;
-      padding: 10px;
     }
 
     .banner-content h1 {
-      font-size: 6vw;
-      margin-bottom: 15px;
-      line-height: 1.2;
+      font-size: 3em;
+      margin-bottom: 20px;
     }
 
     .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Adjust spacing between buttons */
+}
 
-    .buttons a {
-      padding: 10px 20px;
-      font-size: 4vw;
-      color: white;
-      text-decoration: none;
-      background-color: #007bff;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
+.buttons a {
+  padding: 10px 15px; /* Reduce padding for smaller screens */
+  font-size: 1em; /* Adjust font size */
+  color: white;
+  text-decoration: none;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  flex: 1 1 calc(50% - 20px); /* Make buttons responsive */
+  max-width: 200px; /* Optional: Add a max width */
+  text-align: center;
+}
 
-    .buttons a:hover {
-      background-color: #0056b3;
-    }
+.buttons a:hover {
+  background-color: #0056b3;
+}
+@media (max-width: 768px) {
+  .buttons a {
+    flex: 1 1 calc(100% - 20px); /* Stack buttons on smaller screens */
+  }
+}
+
 
     /* Features section styles */
     .features {
@@ -198,19 +203,6 @@
 
     /* Responsive styles */
     @media (max-width: 768px) {
-      .banner {
-        height: 70vh;
-      }
-
-      .banner-content h1 {
-        font-size: 5vw;
-      }
-
-      .buttons a {
-        font-size: 4.5vw;
-        padding: 8px 15px;
-      }
-
       .features-container {
         flex-direction: column;
         align-items: center;
@@ -273,4 +265,26 @@
     <div class="contact-info">
       <p><strong>Email:</strong> 8888@x9loads.com</p>
       <p><strong>Phone:</strong> +91 8888888888</p>
-      </div>
+      <p><strong>Address:</strong> Lorem ipsum dolor sit amet.</p>
+    </div>
+  </section>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+
+    menuToggle.addEventListener('click', () => {
+      const isSidebarVisible = sidebar.style.display === 'flex';
+      sidebar.style.display = isSidebarVisible ? 'none' : 'flex';
+      overlay.style.display = isSidebarVisible ? 'none' : 'block';
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.style.display = 'none';
+      overlay.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>
