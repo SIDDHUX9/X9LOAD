@@ -1,124 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gotham Loads</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color:#977979 ;
-      border-radius: 8px;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      text-align: center;
-      color: #a5d75a;
-      font-size: 2.5rem;
-      margin-top: 2rem;
-    }
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem;
-    }
-    .load-item {
-      background: linear-gradient(135deg, #ffffff, #2575fc);
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      transition: transform 0.2s ease-in-out;
-    }
-    .load-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .load-item h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .load-item p {
-      font-size: 0.9rem;
-      color: #b12f2f;
-    }
-    .load-item .details {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1rem;
-    }
-    .load-item .details div {
-      flex: 1;
-      text-align: center;
-    }
-    .load-item .details .icon {
-      font-size: 1.2rem;
-      color: #333;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Listings</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .load-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .load-card:hover {
+            transform: scale(1.05);
+        }
+
+        .load-card .icon {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .load-card h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .load-card p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .load-card h2 {
+                font-size: 1.3em;
+            }
+
+            .load-card p {
+                font-size: 0.9em;
+            }
+
+            .search-bar input {
+                width: 200px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1> GENETHON</h1>
-  </header>
+    <header class="header">
+        <h1>Load Listings</h1>
+    </header>
 
-  <div class="container">
-    <div class="load-item">
-      <h2>Load 1</h2>
-      <p>From: Indore</p>
-      <p>To: Jabalpur</p>
-      <div class="details">
-        <div>
-          <i class="fa fa-balance-scale"></i>
-          <p>Weight: 15 MT</p>
-        </div>
-        <div>
-          <i class="fa fa-inr"></i>
-          <p>Freight: 37000</p>
-        </div>
-        <div>
-          <i class="fa fa-exclamation-triangle"></i>
-          <p>Additional Charges: 1000</p>
-        </div>
-      </div>
+    <div class="search-bar">
+        <input type="text" id="origin" placeholder="Origin">
+        <input type="text" id="destination" placeholder="Destination">
+        <button onclick="searchLoads()">Search</button>
     </div>
-    <div class="load-item">
-      <h2>Load 2</h2>
-      <p>From: Lucknow</p>
-      <p>To: Bhopal</p>
-      <div class="details">
-        <div>
-          <i class="fa fa-balance-scale"></i>
-          <p>Weight: 8 MT</p>
-        </div>
-        <div>
-          <i class="fa fa-inr"></i>
-          <p>Freight: 32000</p>
-        </div>
-        <div>
-          <i class="fa fa-exclamation-triangle"></i>
-          <p>Additional Charges: N/A</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <footer>
-    &copy; 2024 xyz Loads. All rights reserved.
-  </footer>
+    <div class="container" id="loadContainer">
+        <div class="load-card" onclick="openConfirmationPage('001')">
+            <div class="icon">📦</div>
+            <h2>Load ID: 001</h2>
+            <p><strong>Origin:</strong> Delhi</p>
+            <p><strong>Destination:</strong> Mumbai</p>
+            <p><strong>Weight:</strong> 15,000 kg</p>
+            <p><strong>Price:</strong> ₹25,000</p>
+            <p><strong>Loading Date:</strong> 2024-12-15</p>
+        </div>
+        <div class="load-card" onclick="openConfirmationPage('003')">
+            <div class="icon">🚚</div>
+            <h2>Load ID: 002</h2>
+            <p><strong>Origin:</strong> Bengaluru</p>
+            <p><strong>Destination:</strong> Hyderabad</p>
+            <p><strong>Weight:</strong> 10,000 kg</p>
+            <p><strong>Price:</strong> ₹18,000</p>
+            <p><strong>Loading Date:</strong> 2024-12-16</p>
+        </div>
+        <div class="load-card" onclick="openConfirmationPage('003')">
+            <div class="icon">🌍</div>
+            <h2>Load ID: 003</h2>
+            <p><strong>Origin:</strong> Chennai</p>
+            <p><strong>Destination:</strong> Kolkata</p>
+            <p><strong>Weight:</strong> 12,500 kg</p>
+            <p><strong>Price:</strong> ₹22,000</p>
+            <p><strong>Loading Date:</strong> 2024-12-17</p>
+        </div>
+        <div class="load-card" onclick="openConfirmationPage('004')">
+            <div class="icon">🏗️</div>
+            <h2>Load ID: 004</h2>
+            <p><strong>Origin:</strong> Pune</p>
+            <p><strong>Destination:</strong> Ahmedabad</p>
+            <p><strong>Weight:</strong> 20,000 kg</p>
+            <p><strong>Price:</strong> ₹30,000</p>
+            <p><strong>Loading Date:</strong> 2024-12-18</p>
+        </div>
+        <!-- Additional load cards here -->
+    </div>
+
+    <footer class="footer">
+        &copy; 2024 X9LOADS. All rights reserved.
+    </footer>
+
+    <script>
+        function openConfirmationPage(loadId) {
+            alert(`Redirecting to confirmation page for Load ID: ${loadId}`);
+            // Replace the alert with actual navigation logic
+        }
+
+        function searchLoads() {
+            const origin = document.getElementById('origin').value.toLowerCase();
+            const destination = document.getElementById('destination').value.toLowerCase();
+            const cards = document.querySelectorAll('.load-card');
+
+            cards.forEach(card => {
+                const cardOrigin = card.querySelector('p:nth-child(3)').textContent.toLowerCase();
+                const cardDestination = card.querySelector('p:nth-child(4)').textContent.toLowerCase();
+
+                if (cardOrigin.includes(origin) && cardDestination.includes(destination)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        function openConfirmationPage(loadId) {
+    window.location.href = `conf.html?loadId=${loadId}`;
+}
+    </script>
 </body>
-
 </html>
+
