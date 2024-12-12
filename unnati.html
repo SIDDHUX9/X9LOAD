@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vehicles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar .truck {
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        .sidebar .truck button {
+            display: block;
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .truck-details {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .truck-details button {
+            padding: 5px 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>My Vehicles</h2>
+        <div id="truckList">
+            <!-- Truck buttons will be dynamically added here -->
+        </div>
+    </div>
+    <div class="main-content">
+        <h1>Truck Details</h1>
+        <div id="details">
+            <p>Select a truck to view details</p>
+        </div>
+    </div>
+
+    <script>
+        const trucks = [
+            { number: "TX1234", location: "New York", lastTrip: "Los Angeles", history: ["Chicago", "Houston", "Miami"], loadCapacity: 10 },
+            { number: "TX5678", location: "Houston", lastTrip: "Dallas", history: ["Austin", "San Antonio", "Denver"], loadCapacity: 12 },
+            { number: "TX9101", location: "Chicago", lastTrip: "Seattle", history: ["Boston", "Atlanta", "Phoenix"], loadCapacity: 15 },
+            { number: "TX1123", location: "San Diego", lastTrip: "Las Vegas", history: ["San Francisco", "Portland", "Denver"], loadCapacity: 8 },
+            { number: "TX4456", location: "Atlanta", lastTrip: "Miami", history: ["Nashville", "Orlando", "Jacksonville"], loadCapacity: 11 },
+            { number: "TX7890", location: "Phoenix", lastTrip: "Tucson", history: ["Flagstaff", "Albuquerque", "El Paso"], loadCapacity: 9 },
+            { number: "TX2234", location: "Denver", lastTrip: "Salt Lake City", history: ["Cheyenne", "Billings", "Boise"], loadCapacity: 14 },
+            { number: "TX5567", location: "Seattle", lastTrip: "Portland", history: ["Vancouver", "Spokane", "Tacoma"], loadCapacity: 10 },
+            { number: "TX8890", location: "Las Vegas", lastTrip: "Los Angeles", history: ["San Jose", "Fresno", "San Diego"], loadCapacity: 13 },
+            { number: "TX9901", location: "Orlando", lastTrip: "Tampa", history: ["Jacksonville", "Miami", "Atlanta"], loadCapacity: 12 },
+        ];
+
+        const truckList = document.getElementById("truckList");
+        const details = document.getElementById("details");
+
+        function showDetails(truck) {
+            details.innerHTML = `
+                <div class="truck-details">
+                    <h2>Truck ${truck.number}</h2>
+                    <p><strong>Current Location:</strong> ${truck.location}</p>
+                    <p><strong>Last Trip:</strong> ${truck.lastTrip}</p>
+                    <p><strong>Trip History:</strong> ${truck.history.join(", ")}</p>
+                    <p><strong>Load Capacity:</strong> ${truck.loadCapacity} tonnes</p>
+                    <button onclick="shareLocation('${truck.number}', '${truck.location}')">Share Location</button>
+                </div>
+            `;
+        }
+
+        function shareLocation(number, location) {
+            alert(`Location of Truck ${number} (${location}) has been shared!`);
+        }
+
+        trucks.forEach(truck => {
+            const truckDiv = document.createElement("div");
+            truckDiv.className = "truck";
+            truckDiv.innerHTML = `
+                <strong>Truck ${truck.number}</strong>
+                <button onclick="showDetails(${JSON.stringify(truck).replace(/"/g, '&quot;')})">View Details</button>
+            `;
+            truckList.appendChild(truckDiv);
+        });
+    </script>
+</body>
+</html>
+
+

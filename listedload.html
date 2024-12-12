@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gotham Loads</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color:#977979 ;
+      border-radius: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #a5d75a;
+      font-size: 2.5rem;
+      margin-top: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .load-item {
+      background: linear-gradient(135deg, #ffffff, #2575fc);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      transition: transform 0.2s ease-in-out;
+    }
+    .load-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .load-item h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .load-item p {
+      font-size: 0.9rem;
+      color: #b12f2f;
+    }
+    .load-item .details {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .load-item .details div {
+      flex: 1;
+      text-align: center;
+    }
+    .load-item .details .icon {
+      font-size: 1.2rem;
+      color: #333;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1> GENETHON</h1>
+  </header>
+
+  <div class="container">
+    <div class="load-item">
+      <h2>Load 1</h2>
+      <p>From: Indore</p>
+      <p>To: Jabalpur</p>
+      <div class="details">
+        <div>
+          <i class="fa fa-balance-scale"></i>
+          <p>Weight: 15 MT</p>
+        </div>
+        <div>
+          <i class="fa fa-inr"></i>
+          <p>Freight: 37000</p>
+        </div>
+        <div>
+          <i class="fa fa-exclamation-triangle"></i>
+          <p>Additional Charges: 1000</p>
+        </div>
+      </div>
+    </div>
+    <div class="load-item">
+      <h2>Load 2</h2>
+      <p>From: Lucknow</p>
+      <p>To: Bhopal</p>
+      <div class="details">
+        <div>
+          <i class="fa fa-balance-scale"></i>
+          <p>Weight: 8 MT</p>
+        </div>
+        <div>
+          <i class="fa fa-inr"></i>
+          <p>Freight: 32000</p>
+        </div>
+        <div>
+          <i class="fa fa-exclamation-triangle"></i>
+          <p>Additional Charges: N/A</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 xyz Loads. All rights reserved.
+  </footer>
+</body>
+
+</html>

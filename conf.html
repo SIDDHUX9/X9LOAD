@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic fallback styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .order-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-header,
+        .order-details,
+        .next-steps,
+        .footer {
+            margin-bottom: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #0056b3;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        .order-header p,
+        .next-steps p,
+        .footer p {
+            text-align: center;
+        }
+
+        .footer {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="order-container">
+        <!-- Order Header -->
+        <div class="order-header">
+            <h1>Thank You for Your Order!</h1>
+            <p>Your order has been placed successfully.</p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="order-details">
+            <h2>Order Summary</h2>
+            <ul>
+                <li><strong>Order Number:</strong> #123456789</li>
+                <li><strong>Order Date:</strong> December 6, 2024</li>
+                <li><strong>Loading Address:</strong> 123 Main Street, City, Country</li>
+                <li><strong>Total Freight:</strong> Rs 35000</li>
+            </ul>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h3>What Happens Next?</h3>
+            <p>You will recieve a mail regarding contact detail of load provider and location on loading point. Thank
+                you for choosing us!</p>
+            <li style="text-align: center;">An ideal Route For this trip will be shared to the driver</li>
+            <li style="text-align: center;">Your Vehicle location can be tracked anytime by the load owner</li>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>
+            <footer>
+                <p><strong>About Us:</strong> This website provides transportation services for trucks</p>
+                <p><strong>Contact Us:</strong> +8989185236</p>
+            </footer>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

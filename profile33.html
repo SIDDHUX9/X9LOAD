@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Posting System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #004d40;
+            padding: 20px;
+            color: white;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px 0 0 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #00796b;
+        }
+
+        .container {
+            margin-left: 270px;
+            width: calc(100% - 270px);
+            padding: 20px;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        h3 {
+            color: #004d40;
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #004d40;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 105, 0.5);
+        }
+
+        .button {
+            background-color: #004d40;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #00796b;
+        }
+
+        .notification-container {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-container button {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .notification-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        .profile-pic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 6px solid #004d40;
+            object-fit: cover;
+            margin-right: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-pic-btn {
+            background-color: #004d40;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-pic-btn:hover {
+            background-color: #00796b;
+        }
+
+        .form-group select {
+            background-color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="#" onclick="showSection('profile')">Profile</a>
+        <a href="#" onclick="showSection('load-posting')">Post Load</a>
+        <a href="#" onclick="showSection('account-settings')">Account Settings</a>
+    </div>
+
+    <div class="container">
+        <div id="notification-box" class="notification-container">
+            <p id="login-message">Welcome, you are now logged in!</p>
+            <button onclick="hideNotification()">Close</button>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile" class="section">
+            <h3 id="profile-header">Profile</h3>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="profile-pic" id="profile-pic-label">Profile Picture</label>
+                    <div class="profile-pic-container">
+                        <img id="profile-pic-preview" class="profile-pic" src="" alt="Profile Preview">
+                        <button type="button" class="profile-pic-btn" onclick="openProfilePicSelector()">Choose Picture</button>
+                        <input type="file" id="profile-pic-file" accept="image/*" onchange="previewProfilePic()" style="display: none;">
+                        <input type="file" id="profile-pic-camera" accept="image/*" capture="camera" onchange="previewProfilePic()" style="display: none;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" id="name-label">Name/Business Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" id="email-label">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" id="phone-label">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="address" id="address-label">Address</label>
+                    <input type="text" id="address" placeholder="Enter your address" required>
+                </div>
+                <button type="submit" class="button" id="save-profile-btn">Save Profile</button>
+            </form>
+        </div>
+
+        <!-- Load Posting Section -->
+        <div id="load-posting" class="section">
+            <h3 id="load-header">Post a Load</h3>
+            <form id="load-form">
+                <div class="form-group">
+                    <label for="load-name" id="load-name-label">Load Name</label>
+                    <input type="text" id="load-name" placeholder="Enter load name" required>
+                </div>
+                <div class="form-group">
+                    <label for="load-weight" id="load-weight-label">Weight</label>
+                    <input type="text" id="load-weight" placeholder="Enter weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="load-origin" id="load-origin-label">Origin</label>
+                    <input type="text" id="load-origin" placeholder="Enter origin" required>
+                </div>
+                <div class="form-group">
+                    <label for="load-destination" id="load-destination-label">Destination</label>
+                    <input type="text" id="load-destination" placeholder="Enter destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="axle-type" id="axle-type-label">Select Axle Type</label>
+                    <select id="axle-type" onchange="updateMaxLoadBasedOnAxle()">
+                        <option value="single-axle-1">Single Axle (1 Tire)</option>
+                        <option value="single-axle-2">Single Axle (2 Tires)</option>
+                        <option value="single-axle-4">Single Axle (4 Tires)</option>
+                        <option value="tandem-axle">Tandem Axle</option>
+                        <option value="tri-axle">Tri Axle</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="truck-size" id="truck-size-label">Select Truck Size</label>
+                    <select id="truck-size" onchange="updateMaxLoadBasedOnSize()">
+                        <option value="22x7x7">22 L x 7.5 W x 7 H</option>
+                        <option value="32x8x8">32 L x 8 W x 8 H</option>
+                        <option value="40x8x8">40 L x 8 W x 8 H</option>
+                    </select>
+                </div>
+                <div id="max-load-info" class="load-info">Maximum Load: Please select axle and truck size.</div>
+                <button type="submit" class="button" id="post-load-btn">Post Load</button>
+            </form>
+        </div>
+
+        <!-- Account Settings Section -->
+        <div id="account-settings" class="section">
+            <h3 id="settings-header">Account Settings</h3>
+            <form id="account-settings-form" onsubmit="changePassword(event)">
+                <div class="form-group">
+                    <label for="password" id="password-label">Change Password</label>
+                    <input type="password" id="password" placeholder="Enter new password" required>
+                </div>
+                <div class="form-group">
+                    <label for="notifications" id="notifications-label">Enable Notifications</label>
+                    <select id="notifications" onchange="toggleNotifications()">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+                <button type="submit" class="button" id="save-settings-btn">Save Settings</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let notificationsEnabled = false;
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function previewProfilePic() {
+            const fileInput = document.getElementById("profile-pic-file");
+            const cameraInput = document.getElementById("profile-pic-camera");
+            const file = fileInput.files[0] || cameraInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profile-pic-preview").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function openProfilePicSelector() {
+            const fileInput = document.getElementById("profile-pic-file");
+            const cameraInput = document.getElementById("profile-pic-camera");
+            const userChoice = confirm("Choose a picture from gallery or camera?");
+            if (userChoice) {
+                fileInput.click();
+            } else {
+                cameraInput.click();
+            }
+        }
+
+        function toggleNotifications() {
+            const notifications = document.getElementById("notifications").value;
+            notificationsEnabled = (notifications === "enabled");
+            if (notificationsEnabled) {
+                document.getElementById("notification-box").style.display = 'block';
+            } else {
+                document.getElementById("notification-box").style.display = 'none';
+            }
+        }
+
+        function hideNotification() {
+            document.getElementById("notification-box").style.display = 'none';
+        }
+
+        function changePassword(event) {
+            event.preventDefault();
+            const newPassword = document.getElementById("password").value;
+
+            if (newPassword && newPassword.length >= 6) {
+                alert("Password successfully changed!");
+                document.getElementById("password").value = ""; // Clear password field
+            } else {
+                alert("Password must be at least 6 characters long.");
+            }
+        }
+
+        function updateMaxLoadBasedOnAxle() {
+            const axleType = document.getElementById("axle-type").value;
+            let maxLoad = "";
+            switch (axleType) {
+                case 'single-axle-1':
+                    maxLoad = "Max Load: 3 tonnes";
+                    break;
+                case 'single-axle-2':
+                    maxLoad = "Max Load: 7.5 tonnes";
+                    break;
+                case 'single-axle-4':
+                    maxLoad = "Max Load: 11.5 tonnes";
+                    break;
+                case 'tandem-axle':
+                    maxLoad = "Max Load: 21 tonnes";
+                    break;
+                case 'tri-axle':
+                    maxLoad = "Max Load: 27 tonnes";
+                    break;
+            }
+            document.getElementById("max-load-info").textContent = maxLoad;
+        }
+
+        function updateMaxLoadBasedOnSize() {
+            const truckSize = document.getElementById("truck-size").value;
+            let maxLoad = "";
+            switch (truckSize) {
+                case '22x7x7':
+                    maxLoad = "Max Load: 6 to 10 tonnes";
+                    break;
+                case '32x8x8':
+                    maxLoad = "Max Load: 7 to 9 tonnes or 15 to 18 tonnes";
+                    break;
+                case '40x8x8':
+                    maxLoad = "Max Load: 21 to 35 tonnes";
+                    break;
+            }
+            document.getElementById("max-load-info").textContent = maxLoad;
+        }
+
+        window.onload = function() {
+            showSection('profile');
+            document.getElementById("notification-box").style.display = "block";
+        }
+    </script>
+</body>
+</html>

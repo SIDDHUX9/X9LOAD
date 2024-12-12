@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline fallback styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header p {
+            margin: 5px 0 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #218838;
+        }
+        .dropdown {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown li {
+            margin-bottom: 10px;
+        }
+        .dropdown a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .dropdown a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #f1f1f1;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Transport Service</h1>
+        <p>Choose your preferred vehicle and place an order easily!</p>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="order-form" id="order-form-section" ></section>
+            <form id="order-form">
+                <h2>Place Your Order</h2>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required aria-label="Your Name">
+                
+                    <label for="truck-size" id="truck-size-label">Select Truck Size</label>
+                    <select id="truck-size" onchange="updateMaxLoadBasedOnSize()">
+                        <option value="22x7x7">22 L x 7.5 W x 7 H</option>
+                        <option value="32x8x8">32 L x 8 W x 8 H</option>
+                        <option value="40x8x8">40 L x 8 W x 8 H</option>
+                    </select>
+
+
+                </ul>
+                
+                <label for="current-location">Current Location:</label>
+                <input type="text" id="current-location" name="current-location" placeholder="Enter your current location" required aria-label="Current Location">
+
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter destination" required aria-label="Destination">
+
+                <label for="date">Date of Service:</label>
+                <input type="date" id="date" name="date" required aria-label="Date of Service">
+                
+                <button type="submit">Submit Order</button>
+            </form>
+            <div class="confirmation" id="confirmation"></div>
+        </section>
+    </main>
+    <footer>
+        <p><strong>About Us:</strong> This website provides transportation services for trucks, vans, and bikes.</p>
+        <p><strong>Contact Us:</strong> +8989185236</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
