@@ -3,14 +3,14 @@
 
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBXCP1VT35"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBXCP1VT35"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-XBXCP1VT35');
-</script>
+    gtag('config', 'G-XBXCP1VT35');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GENETHON</title>
@@ -25,7 +25,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #312f38;
+      background-color: #000000;
       color: white;
       padding: 20px 10px;
       flex-direction: column;
@@ -88,7 +88,7 @@
     .banner {
       position: relative;
       height: 90vh;
-      background: url('lambo.jpg') no-repeat center center/cover;
+      background: url('truck.jpg') no-repeat center center/cover;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -106,33 +106,40 @@
     }
 
     .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px; /* Adjust spacing between buttons */
-}
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      /* Adjust spacing between buttons */
+    }
 
-.buttons a {
-  padding: 10px 15px; /* Reduce padding for smaller screens */
-  font-size: 1em; /* Adjust font size */
-  color: white;
-  text-decoration: none;
-  background-color: #007bff;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  flex: 1 1 calc(50% - 20px); /* Make buttons responsive */
-  max-width: 200px; /* Optional: Add a max width */
-  text-align: center;
-}
+    .buttons a {
+      padding: 10px 15px;
+      /* Reduce padding for smaller screens */
+      font-size: 1em;
+      /* Adjust font size */
+      color: white;
+      text-decoration: none;
+      background-color: #007bff;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      flex: 1 1 calc(50% - 20px);
+      /* Make buttons responsive */
+      max-width: 200px;
+      /* Optional: Add a max width */
+      text-align: center;
+    }
 
-.buttons a:hover {
-  background-color: #0056b3;
-}
-@media (max-width: 768px) {
-  .buttons a {
-    flex: 1 1 calc(100% - 20px); /* Stack buttons on smaller screens */
-  }
-}
+    .buttons a:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .buttons a {
+        flex: 1 1 calc(100% - 20px);
+        /* Stack buttons on smaller screens */
+      }
+    }
 
 
     /* Features section styles */
@@ -208,6 +215,15 @@
         align-items: center;
       }
     }
+
+    .features-container a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .features-container a:hover {
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 
@@ -215,8 +231,8 @@
   <div class="overlay"></div>
   <header class="header">
     <div class="menu-toggle">&#9776;</div>
-    <div class="logo">X9LOADS</div>
-    <h style="color: #ff2600;">UNPARALLELED SPEED, UNRIVALED SERVICE</h>
+    <div class="logo">Smart Load</div>
+    <h style="color: #6198d2;">UNPARALLELED SPEED, UNRIVALED SERVICE</h>
   </header>
 
   <div class="sidebar">
@@ -228,7 +244,7 @@
 
   <div class="banner">
     <div class="banner-content">
-      <h1>Welcome to X9LOADS</h1>
+      <h1>Welcome to Smart Load</h1>
       <div class="buttons">
         <a href="loaddata.html">Post Load</a>
         <a href="listedload.html">Find Load</a>
@@ -241,29 +257,30 @@
   <section class="features">
     <h2>Our Features</h2>
     <div class="features-container">
-      <div class="feature">
-        <img src="lamborg.jpg" alt="Live Tracking">
+      <a href="tracking.html" class="feature">
+        <img src="track.jpg" alt="Live Tracking">
         <h3>Live Tracking</h3>
         <p>Track your shipments in real-time with our advanced tracking system.</p>
-      </div>
-      <div class="feature">
+      </a>
+      <a href="mileage.html" class="feature">
         <img src="gwag.png" alt="Expected Expenses Calculation">
         <h3>Expected Expenses Calculation</h3>
         <p>Estimate the cost of your shipments with our easy-to-use calculator.</p>
-      </div>
-      <div class="feature">
+      </a>
+      <a href="connection.html" class="feature">
         <img src="urus.jpg" alt="Hassle-Free Connection">
         <h3>Hassle-Free Connection</h3>
         <p>Connect with reliable vehicles and carriers effortlessly.</p>
-      </div>
+      </a>
     </div>
   </section>
+
 
   <!-- Contact Section -->
   <section class="contact">
     <h2>Contact Us</h2>
     <div class="contact-info">
-      <p><strong>Email:</strong> 8888@x9loads.com</p>
+      <p><strong>Email:</strong> 8888@Smart Load.com</p>
       <p><strong>Phone:</strong> +91 8888888888</p>
       <p><strong>Address:</strong> Lorem ipsum dolor sit amet.</p>
     </div>
