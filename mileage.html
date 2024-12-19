@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Mileage Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 350px;
+            text-align: center;
+        }
+        .calculator-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .calculate-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Truck Mileage Calculator</h1>
+        <div class="form-group">
+            <label for="average-mileage">Truck Mileage (km/l)</label>
+            <input type="number" id="average-mileage" placeholder="Enter mileage">
+        </div>
+        <div class="form-group">
+            <label for="diesel-price">Average Diesel Price (₹/l)</label>
+            <input type="number" id="diesel-price" placeholder="Enter diesel price">
+        </div>
+        <div class="form-group">
+            <label for="distance">Distance to be Travelled (km)</label>
+            <input type="number" id="distance" placeholder="Enter distance">
+        </div>
+        <button class="calculate-btn" onclick="calculateExpense()">Calculate Expense</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateExpense() {
+            const mileage = parseFloat(document.getElementById('average-mileage').value);
+            const dieselPrice = parseFloat(document.getElementById('diesel-price').value);
+            const distance = parseFloat(document.getElementById('distance').value);
+
+            if (!mileage || !dieselPrice || !distance || mileage <= 0 || dieselPrice <= 0 || distance <= 0) {
+                document.getElementById('result').textContent = 'Please enter valid positive numbers in all fields.';
+                return;
+            }
+
+            const expense = (distance / mileage) * dieselPrice;
+            document.getElementById('result').textContent = `Expected Diesel Expense: ₹${expense.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
+
