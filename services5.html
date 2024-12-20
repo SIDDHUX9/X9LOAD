@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1e2f, #28293e);
+            color: #dcdcdc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: #2a2a3b;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3e3e55, #1c1c2d);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background: #3e3e55;
+            padding: 10px 0;
+            border-bottom: 2px solid #28293e;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #a1a1b8;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tab:hover, .tab.active {
+            background: #4a4a63;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .content {
+            padding: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .service-card {
+            background: #3a3a4f;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            margin: 10px 0 0;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                border-bottom: 1px solid #444;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #2a2a3b;
+            color: #ffffff;
+        }
+
+        .form-group button {
+            background: #4a4a63;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .form-group button:hover {
+            background: #5b5b7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our Services</h1>
+        </div>
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('live-tracking')">Live Tracking</div>
+            <div class="tab" onclick="showTab('expense-calculation')">Expense Calculation</div>
+            <div class="tab" onclick="showTab('hassle-free')">Hassle-Free Connection</div>
+            <div class="tab" onclick="showTab('mileage-calculator')">Mileage Calculator</div>
+            <div class="tab" onclick="showTab('post-load')">Post Load</div>
+        </div>
+        <div id="live-tracking" class="content active">
+            <div class="service-card">
+                <h3>Live Tracking</h3>
+                <p>Monitor your shipments in real-time with our state-of-the-art tracking technology, ensuring peace of mind and transparency at every step of the journey.</p>
+            </div>
+        </div>
+        <div id="expense-calculation" class="content">
+            <div class="service-card">
+                <h3>Expense Calculation</h3>
+                <p>Easily estimate costs for your transportation needs with our advanced expense calculator, tailored for accurate budget planning.</p>
+            </div>
+        </div>
+        <div id="hassle-free" class="content">
+            <div class="service-card">
+                <h3>Hassle-Free Connection</h3>
+                <p>Connect effortlessly with verified transport providers and streamline your logistics operations with our user-friendly platform.</p>
+            </div>
+        </div>
+        <div id="mileage-calculator" class="content">
+            <div class="service-card">
+                <h3>Mileage Calculator</h3>
+                <p>Calculate your vehicle's mileage easily. Enter the distance covered and fuel consumed to get accurate results.</p>
+                <div class="form-group">
+                    <label for="distance">Distance Covered (km):</label>
+                    <input type="number" id="distance" placeholder="Enter distance">
+                </div>
+                <div class="form-group">
+                    <label for="fuel">Fuel Consumed (liters):</label>
+                    <input type="number" id="fuel" placeholder="Enter fuel">
+                </div>
+                <div class="form-group">
+                    <button onclick="calculateMileage()">Calculate Mileage</button>
+                </div>
+                <p id="mileage-result" style="color: #ffffff;"></p>
+            </div>
+        </div>
+        <div id="post-load" class="content">
+            <div class="service-card">
+                <h3>Post Load</h3>
+                <p>Submit your load details to connect with transporters efficiently.</p>
+                <div class="form-group">
+                    <label for="load-details">Load Details:</label>
+                    <input type="text" id="load-details" placeholder="Enter load details">
+                </div>
+                <div class="form-group">
+                    <label for="origin">Origin:</label>
+                    <input type="text" id="origin" placeholder="Enter origin">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" placeholder="Enter destination">
+                </div>
+                <div class="form-group">
+                    <button>Submit Load</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function calculateMileage() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const fuel = parseFloat(document.getElementById('fuel').value);
+
+            if (isNaN(distance) || isNaN(fuel) || fuel <= 0) {
+                document.getElementById('mileage-result').textContent = "Please enter valid inputs.";
+                return;
+            }
+
+            const mileage = (distance / fuel).toFixed(2);
+            document.getElementById('mileage-result').textContent = `Mileage: ${mileage} km/l`;
+        }
+    </script>
+</body>
+</html>
