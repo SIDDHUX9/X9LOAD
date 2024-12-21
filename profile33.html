@@ -185,7 +185,6 @@
     <div class="sidebar">
         <h2>Dashboard</h2>
         <a href="#" onclick="showSection('profile')">Profile</a>
-        <a href="#" onclick="showSection('load-posting')">Post Load</a>
         <a href="#" onclick="showSection('account-settings')">Account Settings</a>
     </div>
 
@@ -227,49 +226,7 @@
                 <button type="submit" class="button" id="save-profile-btn">Save Profile</button>
             </form>
         </div>
-
-        <!-- Load Posting Section -->
-        <div id="load-posting" class="section">
-            <h3 id="load-header">Post a Load</h3>
-            <form id="load-form">
-                <div class="form-group">
-                    <label for="load-name" id="load-name-label">Load Name</label>
-                    <input type="text" id="load-name" placeholder="Enter load name" required>
-                </div>
-                <div class="form-group">
-                    <label for="load-weight" id="load-weight-label">Weight</label>
-                    <input type="text" id="load-weight" placeholder="Enter weight" required>
-                </div>
-                <div class="form-group">
-                    <label for="load-origin" id="load-origin-label">Origin</label>
-                    <input type="text" id="load-origin" placeholder="Enter origin" required>
-                </div>
-                <div class="form-group">
-                    <label for="load-destination" id="load-destination-label">Destination</label>
-                    <input type="text" id="load-destination" placeholder="Enter destination" required>
-                </div>
-                <div class="form-group">
-                    <label for="axle-type" id="axle-type-label">Select Axle Type</label>
-                    <select id="axle-type" onchange="updateMaxLoadBasedOnAxle()">
-                        <option value="single-axle-1">Single Axle (1 Tire)</option>
-                        <option value="single-axle-2">Single Axle (2 Tires)</option>
-                        <option value="single-axle-4">Single Axle (4 Tires)</option>
-                        <option value="tandem-axle">Tandem Axle</option>
-                        <option value="tri-axle">Tri Axle</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="truck-size" id="truck-size-label">Select Truck Size</label>
-                    <select id="truck-size" onchange="updateMaxLoadBasedOnSize()">
-                        <option value="22x7x7">22 L x 7.5 W x 7 H</option>
-                        <option value="32x8x8">32 L x 8 W x 8 H</option>
-                        <option value="40x8x8">40 L x 8 W x 8 H</option>
-                    </select>
-                </div>
-                <div id="max-load-info" class="load-info">Maximum Load: Please select axle and truck size.</div>
-                <button type="submit" class="button" id="post-load-btn">Post Load</button>
-            </form>
-        </div>
+       
 
         <!-- Account Settings Section -->
         <div id="account-settings" class="section">
