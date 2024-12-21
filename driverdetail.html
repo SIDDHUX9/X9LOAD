@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Existing styles retained */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -32,6 +34,16 @@
             color: #333;
             text-align: center;
             margin-bottom: 20px;
+        }
+
+        .load-details {
+            margin-bottom: 20px;
+        }
+
+        .load-details p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
         }
 
         .form-group {
@@ -97,10 +109,19 @@
         }
     </style>
 </head>
-<body>
 
+<body>
     <div class="container">
         <h3>Driver Details</h3>
+
+        <!-- Section for Load Details -->
+        <div class="load-details" id="load-details">
+            <p><strong>Origin:</strong> Loading...</p>
+            <p><strong>Destination:</strong> Loading...</p>
+            <p><strong>Price:</strong> Loading...</p>
+        </div>
+
+        <!-- Driver Details Form -->
         <form id="driver-form">
             <div class="form-group">
                 <label for="driver-name">Driver Name</label>
@@ -123,24 +144,47 @@
     </div>
 
     <script>
-        document.getElementById("driver-form").addEventListener("submit", function(event) {
+        // Load details stored locally for demonstration
+        const loadData = {
+            "001": { origin: "Delhi", destination: "Mumbai", price: "₹25,000" },
+            "002": { origin: "Bengaluru", destination: "Hyderabad", price: "₹18,000" },
+            "003": { origin: "Chennai", destination: "Kolkata", price: "₹22,000" },
+            "004": { origin: "Pune", destination: "Ahmedabad", price: "₹30,000" },
+            "005": { origin: "Pune", destination: "Maharashtra", price: "₹31,000" },
+        };
+
+        // Function to retrieve load ID from URL
+        function getLoadIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('loadId');
+        }
+
+        // Display load details
+        function displayLoadDetails() {
+            const loadId = getLoadIdFromUrl();
+            const details = loadData[loadId];
+            if (details) {
+                document.getElementById('load-details').innerHTML = `
+                    <p><strong>Origin:</strong> ${details.origin}</p>
+                    <p><strong>Destination:</strong> ${details.destination}</p>
+                    <p><strong>Price:</strong> ${details.price}</p>
+                `;
+            } else {
+                document.getElementById('load-details').innerHTML = `<p>Load details not found.</p>`;
+            }
+        }
+
+        // Initialize the page
+        displayLoadDetails();
+
+        // Form submission logic
+        document.getElementById("driver-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const driverName = document.getElementById("driver-name").value;
-            const truckNumber = document.getElementById("truck-number").value;
-            const driverEmail = document.getElementById("driver-email").value;
-            const driverPhone = document.getElementById("driver-phone").value;
-
-            console.log("Driver Details Submitted:");
-            console.log("Name:", driverName);
-            console.log("Truck Number:", truckNumber);
-            console.log("Email ID:", driverEmail);
-            console.log("Phone Number:", driverPhone);
-
             alert("Driver details saved successfully!");
-            document.getElementById("driver-form").reset();
+            window.location.href = "conf.html";
         });
     </script>
-
 </body>
+
 </html>
