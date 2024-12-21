@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +15,22 @@
             background-color: #f9f9f9;
             color: #333;
         }
+
         header {
             background: linear-gradient(135deg, #1cc378, #2575fc);
             color: #fff;
             text-align: center;
             padding: 20px;
         }
+
         header h1 {
             margin: 0;
         }
+
         header p {
             margin: 5px 0 15px;
         }
+
         nav ul {
             list-style: none;
             padding: 0;
@@ -34,17 +39,21 @@
             justify-content: center;
             gap: 20px;
         }
+
         nav a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
         }
+
         nav a:hover {
             text-decoration: underline;
         }
+
         main {
             padding: 20px;
         }
+
         form {
             max-width: 600px;
             margin: 20px auto;
@@ -54,11 +63,13 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         form label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
         }
+
         form input {
             width: 100%;
             padding: 10px;
@@ -66,6 +77,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         form button {
             display: block;
             width: 100%;
@@ -78,34 +90,96 @@
             font-weight: bold;
             cursor: pointer;
         }
+
         form button:hover {
             background-color: #218838;
         }
+
         .dropdown {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .dropdown li {
             margin-bottom: 10px;
         }
+
         .dropdown a {
             text-decoration: none;
             color: #007bff;
         }
+
         .dropdown a:hover {
             text-decoration: underline;
         }
+
         footer {
             background: #f1f1f1;
             text-align: center;
             padding: 15px;
             margin-top: 20px;
         }
+
+        .sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #333;
+            padding-top: 20px;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .menu-toggle {
+            display: block;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
     </style>
 </head>
+
 <body>
+    <div class="overlay"></div>
+    <div class="sidebar">
+        <a href="index.html">Home</a>
+        <a href="profile33.html">Profile</a>
+        <a href="services5.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="livetrackking3.html">Track My Vehicle</a>
+    </div>
     <header>
+        <div class="menu-toggle">&#9776;</div>
         <h1>List Your Load</h1>
         <p>List your load & Leave the rest on us!</p>
         <nav>
@@ -115,45 +189,59 @@
         </nav>
     </header>
     <main>
-        <section class="order-form" id="order-form-section" ></section>
-            <form id="order-form">
-                <h2>List Your Load</h2>
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required aria-label="Your Name">
-                
-                    <label for="truck-size" id="truck-size-label">Select Truck Size</label>
-                    <select id="truck-size" onchange="updateMaxLoadBasedOnSize()">
-                        <option value="22x7x7">22 L x 7.5 W x 7 H</option>
-                        <option value="32x8x8">32 L x 8 W x 8 H</option>
-                        <option value="40x8x8">40 L x 8 W x 8 H</option>
-                    </select>
+        <section class="order-form" id="order-form-section"></section>
+        <form id="order-form">
+            <h2>List Your Load</h2>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required aria-label="Your Name">
 
+            <label for="truck-size" id="truck-size-label">Select Truck Size</label>
+            <select id="truck-size" onchange="updateMaxLoadBasedOnSize()">
+                <option value="22x7x7">22 L x 7.5 W x 7 H</option>
+                <option value="32x8x8">32 L x 8 W x 8 H</option>
+                <option value="40x8x8">40 L x 8 W x 8 H</option>
+            </select>
 
-                </ul>
-                
-                <label for="current-location">Loading Point:</label>
-                <input type="text" id="current-location" name="current-location" placeholder="Enter your current location" required aria-label="Current Location">
+            <label for="current-location">Loading Point:</label>
+            <input type="text" id="current-location" name="current-location" placeholder="Enter your current location"
+                required aria-label="Current Location">
 
-                <label for="destination">Destination:</label>
-                <input type="text" id="destination" name="destination" placeholder="Enter destination" required aria-label="Destination">
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" placeholder="Enter destination" required
+                aria-label="Destination">
 
-                <label for="date">Date of Loading:</label>
-                <input type="date" id="date" name="date" required aria-label="Date of Service">
+            <label for="date">Date of Loading:</label>
+            <input type="date" id="date" name="date" required aria-label="Date of Service">
 
-                <label for="current-location">Freight (in INR)</label>
-                <input type="text" id="Freight" name="Freight" placeholder="Rate" required aria-label="Current Location">
-                
-                
-                <button type="submit">Submit Order</button>
-            </form>
-            <div class="confirmation" id="confirmation"></div>
-        </section>
+            <label for="current-location">Freight (in INR)</label>
+            <input type="text" id="Freight" name="Freight" placeholder="Rate" required aria-label="Current Location">
+
+            <button type="submit">Submit Order</button>
+        </form>
+        <div class="confirmation" id="confirmation"></div>
     </main>
     <footer>
         <p><strong>About Us:</strong> This website provides transportation services for trucks, vans, and bikes.</p>
         <p><strong>Contact Us:</strong> +91 8989185236</p>
     </footer>
     <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
 
+        menuToggle.addEventListener('click', () => {
+            const isSidebarVisible = sidebar.style.display === 'flex';
+            sidebar.style.display = isSidebarVisible ? 'none' : 'flex';
+            overlay.style.display = isSidebarVisible ? 'none' : 'block';
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
