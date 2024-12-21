@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Basic fallback styling */
         body {
@@ -77,21 +76,21 @@
         <!-- Order Details -->
         <div class="order-details">
             <h2>Order Summary</h2>
-            <ul>
-                <li><strong>Order Number:</strong> #123456789</li>
-                <li><strong>Order Date:</strong> December 6, 2024</li>
-                <li><strong>Loading Address:</strong> 123 Main Street, City, Country</li>
-                <li><strong>Total Freight:</strong> Rs 35000</li>
+            <ul id="order-summary">
+                <li><strong>Order ID:</strong> 003</li>
+                <li><strong>Origin:</strong> <span id="order-origin">xyz</span></li>
+                <li><strong>Destination:</strong> <span id="order-destination">xyz</span></li>
+                <li><strong>Total Freight:</strong> Rs <span id="order-price">0</span></li>
             </ul>
         </div>
 
         <!-- Next Steps -->
         <div class="next-steps">
             <h3>What Happens Next?</h3>
-            <p>You will recieve a mail regarding contact detail of load provider and location on loading point. Thank
-                you for choosing us!</p>
-            <li style="text-align: center;">An ideal Route For this trip will be shared to the driver</li>
-            <li style="text-align: center;">Your Vehicle location can be tracked anytime by the load owner</li>
+            <p>You will receive a mail regarding the contact details of the load provider and the location of the
+                loading point. Thank you for choosing us!</p>
+            <li style="text-align: center;">An ideal route for this trip will be shared with the driver</li>
+            <li style="text-align: center;">Your vehicle location can be tracked anytime by the load owner</li>
         </div>
 
         <!-- Footer -->
@@ -104,6 +103,28 @@
             </p>
         </div>
     </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Fetch and display order details from URL parameters
+        document.addEventListener("DOMContentLoaded", function () {
+            const origin = getQueryParam('origin');
+            const destination = getQueryParam('destination');
+            const price = getQueryParam('price');
+
+            if (origin && destination && price) {
+                document.getElementById('order-origin').textContent = origin;
+                document.getElementById('order-destination').textContent = destination;
+                document.getElementById('order-price').textContent = price;
+            }
+        });
+    </script>
+
 </body>
 
 </html>
