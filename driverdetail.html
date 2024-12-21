@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #67b26f, #4ca2cd);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            width: 400px;
+            max-width: 90%;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            background: #f9f9f9;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #67b26f;
+            box-shadow: 0 0 8px rgba(103, 178, 111, 0.3);
+            outline: none;
+            background: #fff;
+        }
+
+        .button {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background: linear-gradient(135deg, #67b26f, #4ca2cd);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: linear-gradient(135deg, #4ca2cd, #67b26f);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Driver Details</h3>
+        <form id="driver-form">
+            <div class="form-group">
+                <label for="driver-name">Driver Name</label>
+                <input type="text" id="driver-name" placeholder="Enter driver's name" required>
+            </div>
+            <div class="form-group">
+                <label for="truck-number">Truck Number</label>
+                <input type="text" id="truck-number" placeholder="Enter truck number" required>
+            </div>
+            <div class="form-group">
+                <label for="driver-email">Email ID</label>
+                <input type="email" id="driver-email" placeholder="Enter driver's email ID" required>
+            </div>
+            <div class="form-group">
+                <label for="driver-phone">Phone Number</label>
+                <input type="tel" id="driver-phone" placeholder="Enter driver's phone number" required>
+            </div>
+            <button type="submit" class="button">Save Driver Details</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("driver-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const driverName = document.getElementById("driver-name").value;
+            const truckNumber = document.getElementById("truck-number").value;
+            const driverEmail = document.getElementById("driver-email").value;
+            const driverPhone = document.getElementById("driver-phone").value;
+
+            console.log("Driver Details Submitted:");
+            console.log("Name:", driverName);
+            console.log("Truck Number:", truckNumber);
+            console.log("Email ID:", driverEmail);
+            console.log("Phone Number:", driverPhone);
+
+            alert("Driver details saved successfully!");
+            document.getElementById("driver-form").reset();
+        });
+    </script>
+
+</body>
+</html>
