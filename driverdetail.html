@@ -119,6 +119,7 @@
             <p><strong>Origin:</strong> Loading...</p>
             <p><strong>Destination:</strong> Loading...</p>
             <p><strong>Price:</strong> Loading...</p>
+            <p><strong>Date:</strong> Loading...</p>
         </div>
 
         <!-- Driver Details Form -->
@@ -144,12 +145,11 @@
     </div>
 
     <script>
-        // Load details stored locally for demonstration
         const loadData = {
-            "001": { origin: "Delhi", destination: "Mumbai", price: "₹25,000" },
-            "002": { origin: "Bengaluru", destination: "Hyderabad", price: "₹18,000" },
-            "003": { origin: "Chennai", destination: "Kolkata", price: "₹22,000" },
-            "004": { origin: "Pune", destination: "Ahmedabad", price: "₹30,000" },
+            "001": { origin: "Delhi", destination: "Mumbai", price: "₹25,000"},
+            "002": { origin: "Bengaluru", destination: "Hyderabad", price: "₹18,000"},
+            "003": { origin: "Chennai", destination: "Kolkata", price: "₹22,000"},
+            "004": { origin: "Pune", destination: "Ahmedabad", price: "₹30,000"},
             "005": { origin: "Pune", destination: "Maharashtra", price: "₹31,000" },
         };
 
@@ -178,12 +178,44 @@
         displayLoadDetails();
 
         // Form submission logic
-        document.getElementById("driver-form").addEventListener("submit", function (event) {
-            event.preventDefault();
+// Form submission logic
+document.getElementById("driver-form").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-            alert("Driver details saved successfully!");
-            window.location.href = "conf.html";
-        });
+    // Get the load ID from the URL
+    const loadId = getLoadIdFromUrl();
+
+    // Fetch the selected load details from loadData
+    const loadDetails = loadData[loadId];
+
+    if (loadDetails) {
+        // Redirect to confirmation page with load details as query params
+        window.location.href = `conf.html?origin=${loadDetails.origin}&destination=${loadDetails.destination}&price=${loadDetails.price}`;
+    } else {
+        alert("Invalid Load ID");
+    }
+});
+
+        function openConfirmationPage(loadId) {
+    // Fetch the selected load details
+    const loadCards = document.querySelectorAll('.load-card');
+    let loadDetails = null;
+    loadCards.forEach(card => {
+        const cardLoadId = card.querySelector('h2').textContent.split(': ')[1];
+        if (cardLoadId === loadId) {
+            const origin = card.querySelector('p:nth-child(3)').textContent.split(': ')[1];
+            const destination = card.querySelector('p:nth-child(4)').textContent.split(': ')[1];
+            const price = card.querySelector('p:nth-child(5)').textContent.split(': ')[1];
+            loadDetails = { origin, destination, price };
+        }
+    });
+    
+    if (loadDetails) {
+        // Redirect to confirmation page with load details as query params
+        window.location.href = `conf.html?origin=${loadDetails.origin}&destination=${loadDetails.destination}&price=${loadDetails.price}`;
+    }
+}
+
     </script>
 </body>
 
