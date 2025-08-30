@@ -2,33 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>List Your Load</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Same gradient & colours you already had -->
     <style>
-        /* Inline fallback styles */
+        :root {
+            --brand: #1cc378;
+            --brand-dark: #218838;
+            --bg: #f9f9f9;
+            --card: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            background: var(--bg);
             color: #333;
+            line-height: 1.5
         }
 
         header {
-            background: linear-gradient(135deg, #1cc378, #2575fc);
+            background: linear-gradient(135deg, var(--brand), #2575fc);
             color: #fff;
             text-align: center;
             padding: 20px;
+            position: relative
         }
 
         header h1 {
-            margin: 0;
+            margin: 0
         }
 
         header p {
-            margin: 5px 0 15px;
+            margin: 5px 0 15px
         }
 
         nav ul {
@@ -37,81 +49,61 @@
             margin: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 20px
         }
 
         nav a {
-            text-decoration: none;
             color: #fff;
             font-weight: bold;
+            text-decoration: none
         }
 
         nav a:hover {
-            text-decoration: underline;
+            text-decoration: underline
         }
 
-        main {
-            padding: 20px;
-        }
-
-        form {
+        /* form & card shared styles */
+        .card {
             max-width: 600px;
             margin: 20px auto;
-            padding: 20px;
-            background: #fff;
+            padding: 25px;
+            background: var(--card);
             border: 1px solid #ccc;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1)
         }
 
-        form label {
+        label {
             display: block;
             margin: 10px 0 5px;
-            font-weight: bold;
+            font-weight: bold
         }
 
-        form input {
+        input,
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 15px
         }
 
-        form button {
+        button {
             display: block;
             width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            padding: 12px;
+            background: var(--brand);
             color: #fff;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             font-weight: bold;
-            cursor: pointer;
+            cursor: pointer
         }
 
-        form button:hover {
-            background-color: #218838;
-        }
-
-        .dropdown {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dropdown li {
-            margin-bottom: 10px;
-        }
-
-        .dropdown a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .dropdown a:hover {
-            text-decoration: underline;
+        button:hover {
+            background: var(--brand-dark)
         }
 
         footer {
@@ -119,6 +111,17 @@
             text-align: center;
             padding: 15px;
             margin-top: 20px;
+            font-size: 14px
+        }
+
+        /* hamburger & sidebar (unchanged) */
+        .menu-toggle {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #fff
         }
 
         .sidebar {
@@ -128,22 +131,20 @@
             left: 0;
             height: 100%;
             width: 250px;
-            background-color: #333;
-            padding-top: 20px;
+            background: #333;
             flex-direction: column;
-            z-index: 1000;
+            z-index: 1000
         }
 
         .sidebar a {
-            padding: 10px;
+            padding: 12px 15px;
+            color: #fff;
             text-decoration: none;
-            color: white;
-            display: block;
-            text-align: center;
+            display: block
         }
 
         .sidebar a:hover {
-            background-color: #575757;
+            background: #575757
         }
 
         .overlay {
@@ -153,93 +154,157 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+            background: rgba(0, 0, 0, .5);
+            z-index: 999
         }
 
-        .menu-toggle {
-            display: block;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: white;
-            position: absolute;
-            top: 15px;
-            left: 15px;
+        /* utility */
+        .hidden {
+            display: none
+        }
+
+        .summary dt {
+            font-weight: bold;
+            margin-top: 8px
+        }
+
+        .summary dd {
+            margin: 2px 0 0 0
         }
     </style>
 </head>
 
 <body>
-    <div class="overlay"></div>
-    <div class="sidebar">
+
+    <!-- ---------- sidebar ---------- -->
+    <div class="overlay" id="overlay"></div>
+    <nav class="sidebar" id="sidebar">
         <a href="index.html">Home</a>
         <a href="profile33.html">Profile</a>
         <a href="services5.html">Services</a>
         <a href="contact.html">Contact</a>
         <a href="livetrackking3.html">Track My Vehicle</a>
-    </div>
+    </nav>
+
+    <!-- ---------- header ---------- -->
     <header>
-        <div class="menu-toggle">&#9776;</div>
+        <span class="menu-toggle" id="menuToggle">&#9776;</span>
         <h1>List Your Load</h1>
         <p>List your load & Leave the rest on us!</p>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-            </ul>
-        </nav>
     </header>
-    <main>
-        <section class="order-form" id="order-form-section"></section>
-        <form id="order-form">
-            <h2>List Your Load</h2>
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required aria-label="Your Name">
 
-            <label for="truck-size" id="truck-size-label">Select Truck Size</label>
-            <select id="truck-size" onchange="updateMaxLoadBasedOnSize()">
+    <!-- ---------- STEP 1 : load form ---------- -->
+    <main>
+        <form id="orderForm" class="card">
+            <h2>Load Details</h2>
+
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required placeholder="Enter your name" />
+
+            <label for="truck-size">Select Truck Size</label>
+            <select id="truckSize" required>
                 <option value="22x7x7">22 L x 7.5 W x 7 H</option>
                 <option value="32x8x8">32 L x 8 W x 8 H</option>
                 <option value="40x8x8">40 L x 8 W x 8 H</option>
             </select>
 
-            <label for="current-location">Loading Point:</label>
-            <input type="text" id="current-location" name="current-location" placeholder="Enter your current location"
-                required aria-label="Current Location">
+            <label for="loadingPoint">Loading Point</label>
+            <input type="text" id="loadingPoint" required placeholder="Enter current location" />
 
-            <label for="destination">Destination:</label>
-            <input type="text" id="destination" name="destination" placeholder="Enter destination" required
-                aria-label="Destination">
+            <label for="destination">Destination</label>
+            <input type="text" id="destination" required placeholder="Enter destination" />
 
-            <label for="date">Date of Loading:</label>
-            <input type="date" id="date" name="date" required aria-label="Date of Service">
+            <label for="loadingDate">Date of Loading</label>
+            <input type="date" id="loadingDate" required />
 
-            <label for="current-location">Freight (in INR)</label>
-            <input type="text" id="Freight" name="Freight" placeholder="Rate" required aria-label="Current Location">
+            <label for="freight">Freight (INR)</label>
+            <input type="number" id="freight" required placeholder="Rate" />
 
-            <button type="submit">Submit Order</button>
+            <button type="submit">Review Order</button>
         </form>
-        <div class="confirmation" id="confirmation"></div>
+
+        <!-- ---------- STEP 2 : confirmation review ---------- -->
+        <section id="reviewSection" class="card hidden">
+            <h2>Review & Confirm</h2>
+            <dl class="summary" id="reviewSummary"></dl>
+            <button id="confirmBtn">Confirm & List Load</button>
+            <button id="editBtn" style="background:#6c757d;margin-top:10px">Go Back & Edit</button>
+        </section>
+
+        <!-- ---------- STEP 3 : success ---------- -->
+        <section id="successSection" class="card hidden">
+            <h2>Load Listed Successfully!</h2>
+            <p>Your load has been registered and is now visible to transporters.</p>
+            <dl class="summary" id="finalSummary"></dl>
+            <button onclick="location.reload()">List Another Load</button>
+        </section>
     </main>
+
     <footer>
         <p><strong>About Us:</strong> This website provides transportation services for trucks, vans, and bikes.</p>
         <p><strong>Contact Us:</strong> +91 8989185236</p>
     </footer>
-    <script src="script.js"></script>
+
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.overlay');
+        /* ---------- sidebar toggle ---------- */
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
 
-        menuToggle.addEventListener('click', () => {
-            const isSidebarVisible = sidebar.style.display === 'flex';
-            sidebar.style.display = isSidebarVisible ? 'none' : 'flex';
-            overlay.style.display = isSidebarVisible ? 'none' : 'block';
-        });
+        function toggleSidebar(open) {
+            sidebar.style.display = open ? 'flex' : 'none';
+            overlay.style.display = open ? 'block' : 'none';
+        }
+        menuToggle.onclick = () => toggleSidebar(true);
+        overlay.onclick = () => toggleSidebar(false);
 
-        overlay.addEventListener('click', () => {
-            sidebar.style.display = 'none';
-            overlay.style.display = 'none';
+        /* ---------- form navigation ---------- */
+        const orderForm = document.getElementById('orderForm');
+        const reviewSec = document.getElementById('reviewSection');
+        const successSec = document.getElementById('successSection');
+        const reviewList = document.getElementById('reviewSummary');
+        const finalList = document.getElementById('finalSummary');
+
+        function hideAll() {
+            orderForm.classList.add('hidden');
+            reviewSec.classList.add('hidden');
+            successSec.classList.add('hidden');
+        }
+
+        function showReview() {
+            hideAll();
+            reviewList.innerHTML = '';
+            const data = collectFormData();
+            Object.entries(data).forEach(([k, v]) => {
+                reviewList.insertAdjacentHTML('beforeend', `<dt>${k}</dt><dd>${v}</dd>`);
+            });
+            reviewSec.classList.remove('hidden');
+        }
+
+        function showSuccess() {
+            hideAll();
+            finalList.innerHTML = reviewList.innerHTML;
+            successSec.classList.remove('hidden');
+        }
+
+        function collectFormData() {
+            return {
+                'Name': document.getElementById('name').value,
+                'Truck Size': document.getElementById('truckSize').value,
+                'Loading Point': document.getElementById('loadingPoint').value,
+                'Destination': document.getElementById('destination').value,
+                'Loading Date': document.getElementById('loadingDate').value,
+                'Freight (INR)': document.getElementById('freight').value
+            };
+        }
+
+        /* ---------- events ---------- */
+        orderForm.addEventListener('submit', e => {
+            e.preventDefault();
+            showReview();
         });
+        document.getElementById('confirmBtn').onclick = () => showSuccess();
+        document.getElementById('editBtn').onclick = () => { hideAll(); orderForm.classList.remove('hidden'); };
     </script>
 
 </body>
